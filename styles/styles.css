@@ -70,7 +70,7 @@ body {
   text-underline-offset: .2rem;
 }
 
-.more-link:hover {
+.more-link:hover, .video-link:hover {
   cursor: pointer;
   animation: 400ms ease-in-out infinite alternate shimmer;
 }
@@ -94,8 +94,7 @@ body {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   justify-content: space-between;
-  gap: 1rem;
-  max-width: 85%;
+  gap: .8rem;
 }
 
 .icon-links-container svg {
@@ -429,6 +428,8 @@ header.header-solid {
   gap: 1rem;
   position: absolute;
   max-width: calc(100vw - 2rem);
+  max-height: 3rem;
+  overflow: hidden;
 }
 
 .teaser-music::after {
@@ -445,9 +446,9 @@ header.header-solid {
   width: 100%;
   max-width: calc((100vw - 3rem)/2);
   background-color: var(--smz-white);
-  aspect-ratio: 3 / 1;
   overflow: hidden;
 }
+
 
 .music .teaser-section {
   margin-top: 1rem;
@@ -613,7 +614,7 @@ video {
 }
 
 .videos p a {
-  font-size: .8rem;
+  font-size: inherit;
   text-decoration: underline;
 }
 
@@ -681,7 +682,7 @@ footer {
   gap: .6rem;
 }
 
-.footer-container * {
+.footer-container a, .footer-container li, .footer-container label, .footer-container button, .footer-container input, .footer-container svg path {
   font-size: .8rem;
   color:#8b8b8b;
 }
@@ -691,15 +692,11 @@ footer {
   height: 100%;
 }
 
-.footer-container svg {
-  fill: #8b8b8b;
-}
-
 .footer-container a:hover {
   color: var(--smz-white);
 }
 
-.footer-container a:hover svg {
+.footer-container a:hover svg path{
   fill: var(--smz-white);
 }
 
@@ -752,7 +749,7 @@ footer {
 .socials-links {
   order: 4;
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 1rem;
   justify-content: space-between;
   margin-block: .6rem;
@@ -779,6 +776,7 @@ footer {
 
 /* merch page */
 
+
 .filter-panel {
   margin-block-start: 1rem;
   display: flex;
@@ -789,7 +787,6 @@ footer {
 .filter-list {
   display: flex;
   flex-direction: column;
-  gap: .4rem;
   padding-left: 0;
   font-family: var(--smz-text-fancy);
   text-transform: lowercase;
@@ -804,6 +801,7 @@ footer {
   gap: 1rem;
   padding: .2rem .4rem;
   cursor: pointer;
+  margin-top: .4rem;
 }
 
 .submenu-indicator {
@@ -885,7 +883,7 @@ footer {
 
 .merch-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 1rem;
   margin-block-end: 1rem;
 }
@@ -930,6 +928,148 @@ footer {
   font-weight: 300;
 }
 
+/* product page */
+
+#productForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-top: 1.4rem;
+  align-items: center;
+}
+
+.size-selector {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  width: 100%;
+}
+
+.size-option {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 3rem;
+  max-height: 3rem;
+}
+
+.size-option input[type="radio"] {
+  display: none;
+}
+
+.size-option label {
+  font-family: var(--smz-text-fancy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .1rem;
+  cursor: pointer;    
+  user-select: none;
+  width: 100%;
+  height: 100%;
+  color: #8b8b8b;
+
+ 
+}
+
+.size-option input[type="radio"]:checked + label {
+  border: 2px solid var(--smz-white);
+  color: var(--smz-white);
+}
+
+.size-option label:hover {
+  background-color: rgba(255,255,255,.05);
+}
+
+#selected-size {
+  font-weight: bold;
+}
+
+.color-selector {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.color-option {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 3rem;
+  max-height: 3rem;
+}
+
+.color-option input[type="radio"] {
+  display: none;
+}
+
+.color-option label {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: var(--swatch-color);
+  cursor: pointer;
+  opacity: .6;
+}
+
+.color-option input[type="radio"]:checked + label {
+  border: 2px solid var(--smz-white);
+  opacity: 1;
+}
+
+.color-option label:hover {
+  opacity: 1;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-family: var(--smz-text-fancy);
+  font-size: 1.25rem;
+  color: var(--smz-white);
+}
+
+.quantity-selector button {
+  background-color: transparent;
+  border: 2px solid var(--smz-white);
+  color: var(--smz-white);
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.quantity-selector button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+#quantity-display {
+  min-width: 1.5rem;
+  text-align: center;
+}
+
+.quantity-selector button:disabled,
+.quantity-selector button.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.submit-button {
+  padding: 0.75rem 1.5rem;
+  font-family: var(--smz-text-fancy);
+  font-size: 1rem;
+  color: var(--smz-white);
+  background-color: transparent;
+  border: 2px solid var(--smz-white);
+  cursor: pointer;
+}
+
+
 /* videos page */
 
 .videos-page {
@@ -947,7 +1087,7 @@ footer {
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: var(--smz-black);
+  background: rgba(0,0,0,.5);
 }
 
 .video-embed iframe {
@@ -1012,6 +1152,14 @@ footer {
 /* breakpoints */
 
 @media (min-width: 670px) {
+
+  .more-link, .video-link {
+    font-size: 2.2rem;
+  }
+
+  .section-header {
+    font-size: 2.4rem;
+  }
 
   /* header */
 
@@ -1106,7 +1254,15 @@ footer {
     display: block;
   }
 
+  /* product page */
+
+  
+
   /* music section */
+
+  .music {
+    margin-top: 4rem;
+  }
 
   .music-container {
     display: flex;
@@ -1135,7 +1291,24 @@ footer {
 
   .icon-links-container {
     gap: clamp(1rem, 3vw, 2rem);
+    margin-top: .4rem;
+    max-width: 85%;
   }
+
+  /* videos section */
+
+  .videos {
+    margin-top: 4rem;
+  }
+
+  .videos h2 {
+    font-size: 2.2rem;
+  }
+
+  .videos p {
+    font-size: 1.4rem;
+  }
+
 
   /* streams section */
 
@@ -1143,5 +1316,146 @@ footer {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     place-items: center;
-  }  
+  }
+
+  /* footer */
+
+  .footer-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .primary-links {
+    order: 1;
+  }
+
+  #email-list {
+    order: 2;
+  }
+
+  .secondary-links {
+    order: 3;
+  }
+
+  .socials-links {
+    order: 4;
+  }
+
+  .site-info {
+    order: 5;
+  }
+
+  /* merch page */
+
+  .merch-page {
+    display: grid;
+    grid-template-columns: 13rem 1fr;
+    gap: 1rem;
+  }
+
+  .merch-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .merch-filters {
+    position: sticky;
+    top: 3rem;
+    align-self: start; /* Ensures it sticks to the top in a grid */
+    padding-top: 1rem
+  }
+
+  .merch {
+    padding-top: 1rem;
+  }
+  
+
+  #filter-toggle {
+    display: none;
+  }
+
+  #filter-panel {
+    opacity: 1;
+    margin-block-start: 0;
+    max-height: unset;
+    position: unset;
+    pointer-events: auto;
+  }
+
+  /* music page */
+
+  .music-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .music-page .music-container h3{
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2; /* Limit to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .music-page .music-container p {
+    font-size: clamp(.8rem, 1.8vw, 1.3rem);
+  }
+
+  .music-page .music-info-container {
+    gap: .4rem;
+  }
+
+  .music-page .icon-links-container {
+    margin-top: unset;
+    gap: .8rem;
+    max-width: unset;
+  }
+
+  .music-page .icon-links-container li {
+    max-width: 1.4rem;
+  }
+
+  /* videos page */ 
+
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 950px) {
+  .footer-container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: .4rem;
+  }
+
+  .site-info {
+    order: 2;
+  }
+
+  #email-list {
+    order: 3;
+  }
+
+  .secondary-links {
+    order: 4;
+  }
+
+  .socials-links {
+    grid-column: -2 / -1;
+  }
+
+  /* video page */
+
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .video-embed:nth-of-type(1), .video-embed:nth-of-type(5) {
+    grid-column: span 2;
+    grid-row: span 2;
+    height: 100%;
+  }
 }
